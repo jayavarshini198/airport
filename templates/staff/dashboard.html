@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}
+Airport Operations
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <p class="eyebrow">
+        AIRPORT OPERATIONS
+    </p>
+
+    <h1>
+        Operations Dashboard
+    </h1>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span>
+                Total Baggage
+            </span>
+
+            <strong>
+                {{ baggage|length }}
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>
+                Assistance Requests
+            </span>
+
+            <strong>
+                {{ requests|length }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <section class="section">
+
+        <h2>
+            Priority Baggage Queue
+        </h2>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Bag ID
+                        </th>
+
+                        <th>
+                            Priority
+                        </th>
+
+                        <th>
+                            Score
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Update
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for bag in baggage %}
+
+                    <tr>
+
+                        <td>
+                            {{ bag.baggage_id }}
+                        </td>
+
+                        <td>
+                            {{ bag.priority_level }}
+                        </td>
+
+                        <td>
+                            {{ bag.priority_score }}
+                        </td>
+
+                        <td>
+                            {{ bag.status }}
+                        </td>
+
+                        <td>
+
+                            <form
+                                method="POST"
+                                action="/staff/baggage/{{ bag.id }}/update">
+
+                                <select name="status">
+
+                                    <option>
+                                        Checked In
+                                    </option>
+
+                                    <option>
+                                        Processing
+                                    </option>
+
+                                    <option>
+                                        Loaded
+                                    </option>
+
+                                    <option>
+                                        Arrived
+                                    </option>
+
+                                    <option>
+                                        Claim Ready
+                                    </option>
+
+                                    <option>
+                                        Collected
+                                    </option>
+
+                                </select>
+
+                                <button
+                                    class="small-btn">
+
+                                    Update
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>
+            Assistance Requests
+        </h2>
+
+        {% for request in requests %}
+
+        <div class="request-card">
+
+            <div>
+
+                <strong>
+                    {{ request.request_type }}
+                </strong>
+
+                <p>
+                    Location:
+                    {{ request.location }}
+                </p>
+
+            </div>
+
+            <div>
+
+                <span>
+                    {{ request.status }}
+                </span>
+
+                {% if request.status != "Resolved" %}
+
+                <a href="/staff/assistance/{{ request.id }}/resolve"
+                   class="small-btn">
+
+                    Resolve
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <p class="eyebrow">
+        SYSTEM ADMINISTRATION
+    </p>
+
+    <h1>
+        Airport Intelligence Overview
+    </h1>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span>
+                Registered Users
+            </span>
+
+            <strong>
+                {{ users }}
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>
+                Baggage Records
+            </span>
+
+            <strong>
+                {{ baggage }}
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>
+                High Priority Bags
+            </span>
+
+            <strong>
+                {{ priority }}
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>
+                Assistance Requests
+            </span>
+
+            <strong>
+                {{ assistance }}
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

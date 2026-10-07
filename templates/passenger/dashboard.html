@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}
+Passenger Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="page-heading">
+
+        <p class="eyebrow">
+            PASSENGER PORTAL
+        </p>
+
+        <h1>
+            Welcome, {{ current_user.name }}
+        </h1>
+
+        <p>
+            Manage your journey and baggage.
+        </p>
+
+    </div>
+
+
+    {% if profile %}
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span>
+                Assistance
+            </span>
+
+            <strong>
+                {% if profile.assistance_required %}
+                    Required
+                {% else %}
+                    Not Required
+                {% endif %}
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>
+                Mobility Support
+            </span>
+
+            <strong>
+
+                {% if profile.mobility_requirement %}
+                    Required
+                {% else %}
+                    Not Required
+                {% endif %}
+
+            </strong>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <section class="section">
+
+        <div class="section-header">
+
+            <h2>
+                My Baggage
+            </h2>
+
+        </div>
+
+
+        {% for bag in baggage %}
+
+        <div class="baggage-card">
+
+            <div>
+
+                <span class="muted">
+                    BAGGAGE ID
+                </span>
+
+                <h3>
+                    {{ bag.baggage_id }}
+                </h3>
+
+            </div>
+
+            <div>
+
+                <span class="muted">
+                    STATUS
+                </span>
+
+                <strong>
+                    {{ bag.status }}
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span class="muted">
+                    PRIORITY
+                </span>
+
+                <strong>
+                    {{ bag.priority_level }}
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span class="muted">
+                    ESTIMATE
+                </span>
+
+                <strong>
+                    {{ bag.estimated_minutes }} min
+                </strong>
+
+            </div>
+
+            <a href="/passenger/baggage/{{ bag.id }}"
+               class="btn secondary">
+
+                View
+
+            </a>
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+
+            <h3>
+                No baggage registered
+            </h3>
+
+            <p>
+                Your baggage information will appear here.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+
+    <div class="quick-actions">
+
+        <a href="/passenger/assistance"
+           class="action-card">
+
+            <h3>
+                Request Assistance
+            </h3>
+
+            <p>
+                Need wheelchair or other assistance?
+            </p>
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

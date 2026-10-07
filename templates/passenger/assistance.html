@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}
+Passenger Assistance
+{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <p class="eyebrow">
+        PASSENGER SUPPORT
+    </p>
+
+    <h1>
+        Request Assistance
+    </h1>
+
+    <p>
+        Tell airport staff what assistance you need.
+    </p>
+
+    <form method="POST">
+
+        <label>
+            Assistance Type
+        </label>
+
+        <select name="request_type"
+                required>
+
+            <option value="">
+                Select assistance
+            </option>
+
+            <option>
+                Wheelchair Assistance
+            </option>
+
+            <option>
+                Mobility Assistance
+            </option>
+
+            <option>
+                Visual Assistance
+            </option>
+
+            <option>
+                Hearing Assistance
+            </option>
+
+            <option>
+                Elderly Assistance
+            </option>
+
+            <option>
+                Medical Assistance
+            </option>
+
+            <option>
+                Help Collecting Baggage
+            </option>
+
+        </select>
+
+
+        <label>
+            Current Location
+        </label>
+
+        <input
+            type="text"
+            name="location"
+            placeholder="Example: Baggage Claim - Belt 4"
+            required
+        >
+
+
+        <button
+            class="btn primary"
+            type="submit">
+
+            Submit Assistance Request
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

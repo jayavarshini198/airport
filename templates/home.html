@@ -1,0 +1,185 @@
+ {% extends "base.html" %}
+
+{% block title %}
+Smart Airport | Home
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            AI-Based Smart Baggage Priority
+            & Passenger Assistance
+        </h1>
+
+        <p>
+            A smart software platform designed to improve
+            baggage priority and passenger assistance at airports.
+        </p>
+
+        <div class="hero-buttons">
+
+            {% if current_user.is_authenticated %}
+
+                {% if current_user.role == "passenger" %}
+                    <a
+                        href="{{ url_for('passenger.dashboard') }}"
+                        class="btn"
+                    >
+                        Go to Dashboard
+                    </a>
+
+                {% elif current_user.role == "staff" %}
+                    <a
+                        href="{{ url_for('staff.dashboard') }}"
+                        class="btn"
+                    >
+                        Staff Dashboard
+                    </a>
+
+                {% elif current_user.role == "admin" %}
+                    <a
+                        href="{{ url_for('admin.dashboard') }}"
+                        class="btn"
+                    >
+                        Admin Dashboard
+                    </a>
+                {% endif %}
+
+            {% else %}
+
+                <a
+                    href="{{ url_for('auth.register') }}"
+                    class="btn"
+                >
+                    Get Started
+                </a>
+
+                <a
+                    href="{{ url_for('auth.login') }}"
+                    class="btn btn-secondary"
+                >
+                    Login
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <h2>Smart Airport Features</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+
+            <h3>Priority Scoring</h3>
+
+            <p>
+                Calculates passenger priority using
+                accessibility needs, age, mobility requirements
+                and connection time.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">🧳</div>
+
+            <h3>Smart Baggage Tracking</h3>
+
+            <p>
+                Track baggage through stages from
+                check-in to collection.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">♿</div>
+
+            <h3>Passenger Assistance</h3>
+
+            <p>
+                Passengers can submit assistance requests
+                and staff can manage them.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">⏱️</div>
+
+            <h3>ETA & Delay Risk</h3>
+
+            <p>
+                Provides estimated baggage arrival time
+                and delay-risk information.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="how-it-works">
+
+    <h2>How It Works</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <span>1</span>
+            <h3>Register</h3>
+            <p>
+                Passenger creates a profile and provides
+                required assistance information.
+            </p>
+        </div>
+
+
+        <div class="step">
+            <span>2</span>
+            <h3>Priority Analysis</h3>
+            <p>
+                The system calculates a transparent
+                priority score.
+            </p>
+        </div>
+
+
+        <div class="step">
+            <span>3</span>
+            <h3>Baggage Tracking</h3>
+            <p>
+                Baggage status, ETA and delay risk
+                are displayed.
+            </p>
+        </div>
+
+
+        <div class="step">
+            <span>4</span>
+            <h3>Assistance</h3>
+            <p>
+                Airport staff can respond to passenger
+                assistance requests.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

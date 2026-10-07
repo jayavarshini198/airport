@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+Baggage Tracking
+{% endblock %}
+
+{% block content %}
+
+<div class="tracking-container">
+
+    <p class="eyebrow">
+        BAGGAGE TRACKING
+    </p>
+
+    <h1>
+        {{ baggage.baggage_id }}
+    </h1>
+
+    <div class="tracking-card">
+
+        <div class="tracking-status">
+
+            <span>
+                Current Status
+            </span>
+
+            <strong>
+                {{ baggage.status }}
+            </strong>
+
+        </div>
+
+        <div class="tracking-status">
+
+            <span>
+                Priority
+            </span>
+
+            <strong>
+                {{ baggage.priority_level }}
+            </strong>
+
+        </div>
+
+        <div class="tracking-status">
+
+            <span>
+                Priority Score
+            </span>
+
+            <strong>
+                {{ baggage.priority_score }}
+            </strong>
+
+        </div>
+
+        <div class="tracking-status">
+
+            <span>
+                Estimated Arrival
+            </span>
+
+            <strong>
+                {{ baggage.estimated_minutes }} minutes
+            </strong>
+
+        </div>
+
+        <div class="tracking-status">
+
+            <span>
+                Delay Risk
+            </span>
+
+            <strong>
+                {{ baggage.delay_risk }}
+            </strong>
+
+        </div>
+
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item completed">
+            Checked In
+        </div>
+
+        <div class="timeline-item">
+            Processing
+        </div>
+
+        <div class="timeline-item">
+            Loaded
+        </div>
+
+        <div class="timeline-item">
+            Flight Arrived
+        </div>
+
+        <div class="timeline-item">
+            Claim Ready
+        </div>
+
+        <div class="timeline-item">
+            Collected
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
